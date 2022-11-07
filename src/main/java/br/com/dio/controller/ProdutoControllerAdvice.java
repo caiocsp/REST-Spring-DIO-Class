@@ -15,8 +15,8 @@ import br.com.dio.exception.ProductPriceException;
 @ControllerAdvice
 public class ProdutoControllerAdvice extends ResponseEntityExceptionHandler {
 //Teremos um controller de erros    
-//Garantindo que não salve se houver erros na requisição
-//Seja informando de forma mais genérica ou mais específica como os exemplos abaixo
+//Garantindo que não salve se houver erros na requisição,
+//seja informando de forma mais genérica ou mais específica como os exemplos abaixo
 
     @ExceptionHandler(ProductNullException.class) //Definindo responsável pela exceção
     public ResponseEntity<Object> capturaErroNull(){
