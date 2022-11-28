@@ -20,7 +20,8 @@ import br.com.dio.config.jwt.JwtRequestFilter;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //Configurações de autenticação
-//É possível especificar a autenticação para cada requisição.
+//É possível especificar o nível de autenticação para cada requisição (A partir da linha 53).
+
 	@Autowired
 	public UserService userService;
 
@@ -55,6 +56,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.anyRequest().authenticated().and()
 				.exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and()
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+				//Stateless, não quero que armazene status de login do usuário evitando quebra de performance
+				//Agora todos os endpoints exceto login, necessitam do Token retornado em nossa autenticação
 
 		httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 	}
