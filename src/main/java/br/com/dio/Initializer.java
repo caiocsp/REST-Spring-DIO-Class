@@ -25,7 +25,7 @@ public class Initializer {
 	@PostConstruct
 	public void criaUsuariosEPermissoes() {
 		Role roleAdmin = new Role();
-		//Definindo o nível de permissão do user teste
+		//Definindo o nível/nome de permissão do user teste
 		roleAdmin.setName("ADMIN");
 
 		roleService.save(roleAdmin);

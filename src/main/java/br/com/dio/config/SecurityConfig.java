@@ -51,7 +51,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 		httpSecurity.csrf().disable()
 				.authorizeRequests().antMatchers("/auth/signin").permitAll()
-				.antMatchers("/produto/**").hasAnyRole("ADMIN")
+				.antMatchers("/actuator/**").permitAll()
+				.antMatchers("/produto/**").authenticated()
 				.antMatchers("/pedido/**").authenticated()
 				.anyRequest().authenticated().and()
 				.exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and()
@@ -59,6 +60,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				//Stateless, não quero que armazene status de login do usuário evitando quebra de performance
 				//Agora todos os endpoints exceto login, necessitam do Token retornado em nossa autenticação
 
+
 		httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 	}
+
+	//@Autowired
+	//	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+	//		auth.inMemoryAuthentication()
+	//		.withUser("caiocsp")
+	//		.password("{noop}123456")
+	//		.roles("USER");
+	//	}
 }
