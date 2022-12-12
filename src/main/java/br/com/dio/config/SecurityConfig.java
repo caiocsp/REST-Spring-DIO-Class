@@ -21,9 +21,7 @@ import br.com.dio.config.jwt.JwtRequestFilter;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //Configurações de autenticação
 //É possível especificar o nível de autenticação para cada requisição (A partir da linha 53).
-//Agora estou na Aula 3
-//Configurando sistemas de healthcheck da aplicação com Actuator (Verifica se tem alguma config adicional), segunda aula (ver de novo)
-//Aprender como configura um role do JWT
+
 
 	@Autowired
 	public UserService userService;
