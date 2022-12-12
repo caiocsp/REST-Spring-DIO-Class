@@ -21,6 +21,9 @@ import br.com.dio.config.jwt.JwtRequestFilter;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //Configurações de autenticação
 //É possível especificar o nível de autenticação para cada requisição (A partir da linha 53).
+//Agora estou na Aula 3
+//Configurando sistemas de healthcheck da aplicação com Actuator (Verifica se tem alguma config adicional), segunda aula (ver de novo)
+//Aprender como configura um role do JWT
 
 	@Autowired
 	public UserService userService;
@@ -52,9 +55,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		httpSecurity.csrf().disable()
 				.authorizeRequests().antMatchers("/auth/signin").permitAll()
 				.antMatchers("/actuator/**").permitAll()
-				.antMatchers("/produto/**").authenticated()
+				.antMatchers("/produto/**").hasAnyAuthority("ADMIN")
 				.antMatchers("/pedido/**").authenticated()
-				.anyRequest().authenticated().and()
+				.anyRequest().authenticated()
+				.and()
 				.exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and()
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 				//Stateless, não quero que armazene status de login do usuário evitando quebra de performance
