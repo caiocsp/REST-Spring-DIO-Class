@@ -55,6 +55,13 @@
 			<artifactId>jjwt</artifactId>
 			<version>0.9.1</version>
 		</dependency>
+		<dependency>
+			<!-- Será uma aplicação que rodará à parte, na porta 8081 (como configurado no application.properties -->
+			<groupId>de.codecentric</groupId>
+			<artifactId>spring-boot-admin-starter-client</artifactId>
+			<version>2.5.1</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
